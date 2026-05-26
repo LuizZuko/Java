@@ -18,4 +18,34 @@ public class Produto {
     public double getPreco() { return this.preco; }
     public int getEstoque() { return this.estoque; }
     public int getCategoria() { return this.categoria; }
+
+    public void setId(int id) { 
+        if (id >= 0) {
+            this.id = id; 
+        }
+    }
+
+    public void setNome(String nome) { 
+        if (nome != null && nome.trim().length() > 0) {
+            this.nome = nome.trim(); 
+        }
+    }
+
+    public void setPreco(double preco) { 
+        if (preco > 0) {
+            this.preco = preco; 
+        }
+    }
+
+    public void setEstoque(int estoque) { 
+        if (estoque >= 0) {
+            this.estoque = estoque; 
+        }
+    }
+
+    public void setCategoria(int categoria) { 
+        if (categoria >= 1 && categoria <= 4) {
+            this.categoria = categoria; 
+        }
+    }
 }
