@@ -4,13 +4,15 @@ public class Produto {
     private double preco;
     private int estoque;
     private String categoria;
+    private String tipoErva;
 
-    public Produto(int idParam, String nomeParam, double precoParam, int estoqueParam, String catParam) {
+    public Produto(int idParam, String nomeParam, double precoParam, int estoqueParam, String catParam, String tipoErvaParam) {
         id = idParam;
         nome = nomeParam;
         preco = precoParam;
         estoque = estoqueParam;
         categoria = catParam;
+        tipoErva = tipoErvaParam;
     }
 
     public int getId() { return id; }
