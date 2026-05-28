@@ -3,9 +3,9 @@ public class Produto {
     private String nome;
     private double preco;
     private int estoque;
-    private int categoria;
+    private String categoria;
 
-    public Produto(int idParam, String nomeParam, double precoParam, int estoqueParam, int catParam) {
+    public Produto(int idParam, String nomeParam, double precoParam, int estoqueParam, String catParam) {
         id = idParam;
         nome = nomeParam;
         preco = precoParam;
@@ -17,7 +17,8 @@ public class Produto {
     public String getNome() { return nome; }
     public double getPreco() { return preco; }
     public int getEstoque() { return estoque; }
-    public int getCategoria() { return categoria; }
+    public String getCategoria() { return categoria; }
+
 
 
     public void setId(int id) { 
