@@ -20,7 +20,7 @@ public class Produto {
     public double getPreco() { return preco; }
     public int getEstoque() { return estoque; }
     public String getCategoria() { return categoria; }
-
+    public String getTipoErva() { return tipoErva; }
 
 
     public void setId(int id) { 
