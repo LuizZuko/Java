@@ -5,19 +5,20 @@ public class Produto {
     private int estoque;
     private int categoria;
 
-    public Produto(int id, String nome, double preco, int estoque, int categoria) {
-        this.setId(id);
-        this.setNome(nome);
-        this.setPreco(preco);
-        this.setEstoque(estoque);
-        this.setCategoria(categoria);
+    public Produto(int idParam, String nomeParam, double precoParam, int estoqueParam, int catParam) {
+        id = idParam;
+        nome = nomeParam;
+        preco = precoParam;
+        estoque = estoqueParam;
+        categoria = catParam;
     }
 
-    public int getId() { return this.id; }
-    public String getNome() { return this.nome; }
-    public double getPreco() { return this.preco; }
-    public int getEstoque() { return this.estoque; }
-    public int getCategoria() { return this.categoria; }
+    public int getId() { return id; }
+    public String getNome() { return nome; }
+    public double getPreco() { return preco; }
+    public int getEstoque() { return estoque; }
+    public int getCategoria() { return categoria; }
+
 
     public void setId(int id) { 
         if (id >= 0) {
