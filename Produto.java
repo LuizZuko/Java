@@ -49,7 +49,6 @@ public class Produto {
 
     public void setCategoria(int categoria) { 
         if (categoria >= 1 && categoria <= 4) {
-            this.categoria = categoria; 
-        }
+    this.categoria = String.valueOf(categoria);        }
     }
 }
