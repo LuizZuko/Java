@@ -81,3 +81,17 @@ public class PedidoDAO {
                         throw new RuntimeException(e);
                     }
                 });
+
+                int idProd = rs.getInt("id_produto");
+                if (!rs.wasNull()) {
+                    PedidoItem item = new PedidoItem(
+                        idProd, 
+                        rs.getInt("quantidade"), 
+                        rs.getDouble("preco_unitario")
+                    );
+                    pedido.getItens().add(item);
+                }
+            }
+        }
+        return new ArrayList<>(mapaPedidos.values());
+    }
