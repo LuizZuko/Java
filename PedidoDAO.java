@@ -66,3 +66,18 @@ public class PedidoDAO {
                      "FROM pedido p " +
                      "LEFT JOIN pedido_item pi ON p.id_pedido = pi.id_pedido " +
                      "ORDER BY p.id_pedido"; 
+
+                     try (Connection conn = ConexaoFactory.getConexao();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            
+            while (rs.next()) {
+                int idPed = rs.getInt("id_pedido");
+                
+                Pedido pedido = mapaPedidos.computeIfAbsent(idPed, id -> {
+                    try {
+                        return new Pedido(id, rs.getInt("id_cliente"), rs.getString("status"), new ArrayList<>());
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                });
