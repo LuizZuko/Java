@@ -58,3 +58,11 @@ public class PedidoDAO {
             }
         }
     }
+
+    public List<Pedido> listarCompleto() throws Exception {
+        Map<Integer, Pedido> mapaPedidos = new LinkedHashMap<>();
+        
+        String sql = "SELECT p.id_pedido, p.id_cliente, p.status, pi.id_produto, pi.quantidade, pi.preco_unitario " +
+                     "FROM pedido p " +
+                     "LEFT JOIN pedido_item pi ON p.id_pedido = pi.id_pedido " +
+                     "ORDER BY p.id_pedido"; 
