@@ -95,3 +95,20 @@ public class PedidoDAO {
         }
         return new ArrayList<>(mapaPedidos.values());
     }
+
+    public void executarRelatorioSaidaInsumos() throws Exception {
+        String sql = "SELECT id_produto, total_quilos, faturamento_bruto FROM vw_saida_insumos"; // Boa prática: Listar colunas explicitamente em vez de *
+        try (Connection conn = ConexaoFactory.getConexao();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            
+            System.out.println("--- RELATÓRIO (SQL VIEW): MAIORES SAÍDAS DE ERVA MATE E UTENSÍLIOS ---");
+            while (rs.next()) {
+                System.out.printf("ID Produto: %d | Volume Comercializado: %d unidades | Faturamento Total: R$ %.2f%n",
+                        rs.getInt("id_produto"),
+                        rs.getInt("total_quilos"),
+                        rs.getDouble("faturamento_bruto"));
+            }
+        }
+    }
+}
