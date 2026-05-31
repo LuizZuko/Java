@@ -12,7 +12,7 @@ public class PedidoDAO {
         try (Connection conn = ConexaoFactory.getConexao()) {
             conn.setAutoCommit(false);
             try {
-                // 1. Atualiza estoque de forma segura
+                
                 String sqlEstoque = "UPDATE produto SET quantidade_estoque = quantidade_estoque - ? WHERE id_produto = ? AND quantidade_estoque >= ?";
                 try (PreparedStatement stmtEstoque = conn.prepareStatement(sqlEstoque)) {
                     for (PedidoItem item : itens) {
@@ -23,6 +23,18 @@ public class PedidoDAO {
                         int linhasAfetadas = stmtEstoque.executeUpdate();
                         if (linhasAfetadas == 0) {
                             throw new EstoqueInsuficienteException("Estoque insuficiente para o produto ID: " + item.getIdProduto());
+                        }
+                    }
+                }
+
+                String sqlPedido = "INSERT INTO pedido (id_cliente, status) VALUES (?, 'FINALIZADO')";
+                int idPedido = 0;
+                try (PreparedStatement stmtPedido = conn.prepareStatement(sqlPedido, Statement.RETURN_GENERATED_KEYS)) {
+                    stmtPedido.setInt(1, idCliente);
+                    stmtPedido.executeUpdate();
+                    try (ResultSet rs = stmtPedido.getGeneratedKeys()) {
+                        if (rs.next()) {
+                            idPedido = rs.getInt(1);
                         }
                     }
                 }
