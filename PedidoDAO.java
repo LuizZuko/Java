@@ -38,3 +38,15 @@ public class PedidoDAO {
                         }
                     }
                 }
+
+                String sqlItemReal = "INSERT INTO pedido_item (id_pedido, id_produto, quantidade, preco_unitario) VALUES (?, ?, ?, ?)";
+                try (PreparedStatement stmtItem = conn.prepareStatement(sqlItemReal)) {
+                    for (PedidoItem item : itens) {
+                        stmtItem.setInt(1, idPedido);
+                        stmtItem.setInt(2, item.getIdProduto());
+                        stmtItem.setInt(3, item.getQuantidade());
+                        stmtItem.setDouble(4, item.getPrecoUnitario());
+                        stmtItem.addBatch(); // Adiciona ao lote
+                    }
+                    stmtItem.executeBatch(); // Envia tudo em uma única viagem ao banco
+                }
