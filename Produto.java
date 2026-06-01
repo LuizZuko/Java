@@ -3,21 +3,25 @@ public class Produto {
     private String nome;
     private double preco;
     private int estoque;
-    private int categoria;
+    private String categoria;
+    private String tipoErva;
 
-    public Produto(int id, String nome, double preco, int estoque, int categoria) {
-        this.setId(id);
-        this.setNome(nome);
-        this.setPreco(preco);
-        this.setEstoque(estoque);
-        this.setCategoria(categoria);
+    public Produto(int idParam, String nomeParam, double precoParam, int estoqueParam, String catParam, String tipoErvaParam) {
+        id = idParam;
+        nome = nomeParam;
+        preco = precoParam;
+        estoque = estoqueParam;
+        categoria = catParam;
+        tipoErva = tipoErvaParam;
     }
 
-    public int getId() { return this.id; }
-    public String getNome() { return this.nome; }
-    public double getPreco() { return this.preco; }
-    public int getEstoque() { return this.estoque; }
-    public int getCategoria() { return this.categoria; }
+    public int getId() { return id; }
+    public String getNome() { return nome; }
+    public double getPreco() { return preco; }
+    public int getEstoque() { return estoque; }
+    public String getCategoria() { return categoria; }
+    public String getTipoErva() { return tipoErva; }
+
 
     public void setId(int id) { 
         if (id >= 0) {
@@ -45,7 +49,7 @@ public class Produto {
 
     public void setCategoria(int categoria) { 
         if (categoria >= 1 && categoria <= 4) {
-            this.categoria = categoria; 
+            this.categoria = String.valueOf(categoria);
         }
     }
 }
