@@ -8,3 +8,8 @@ public class PedidoItem {
         quantidade = qtdParam;
         precoUnitario = precoParam;
     }
+
+    public int getIdProduto() { return idProduto; }
+    public int getQuantidade() { return quantidade; }
+    public double getPrecoUnitario() { return precoUnitario; }
+}
